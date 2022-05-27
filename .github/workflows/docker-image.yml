@@ -18,9 +18,9 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image (latest)
       run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/kalieduxo:latest
-    - name: Build the Docker image (${{GITHUB_REF_NAME}})
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/kalieduxo:${{GITHUB_REF_NAME}}
+    - name: Build the Docker image (${{GITHUB.REF.NAME}})
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/kalieduxo:${{GITHUB.REF.NAME}}
     - name: Docker Push (latest)
       run: docker push ${{secrets.DOCKER_USER}}/kalieduxo:latest
-    - name: Docker Push (${{GITHUB_REF_NAME}})
+    - name: Docker Push (${{GITHUB.REF.NAME}})
       run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/kalieduxo:latest
